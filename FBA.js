@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         FBA Discrepancy
-// @namespace    http://tampermonkey.net/
+// @namespace    https://raw.githubusercontent.com/omnidune/UserScripts/master/FBA.js
 // @version      0.1
 // @description  FBA Discrepancy detector
 // @author       Raj
 // @match        https://sellercentral.amazon.com/gp/fba/inbound-queue/index.html*
+// @downloadURL  https://raw.githubusercontent.com/omnidune/UserScripts/master/FBA.js
 // @grant        none
 // ==/UserScript==
 

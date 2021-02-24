@@ -1,9 +1,11 @@
 // ==UserScript==
 // @name         Rakuten Enhancer
+// @namespace    https://raw.githubusercontent.com/omnidune/UserScripts/master/Rakuten.js
 // @version      0.2
 // @description  This script fixes the top header from the inventory page of Rakuten on scroll, adds filters to the inventory page.
 // @author       Raj
 // @match        https://smartfill.rakutensl.com/Inventory/index.aspx
+// @downloadURL  https://raw.githubusercontent.com/omnidune/UserScripts/master/Rakuten.js
 // @grant        none
 // ==/UserScript==
 
