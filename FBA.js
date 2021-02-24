@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         FBA Discrepancy
 // @namespace    https://raw.githubusercontent.com/omnidune/UserScripts/master/FBA.js
-// @version      0.1
+// @version      0.2
 // @description  FBA Discrepancy detector
 // @author       Raj
 // @match        https://sellercentral.amazon.com/gp/fba/inbound-queue/index.html*
@@ -9,7 +9,7 @@
 // @grant        none
 // ==/UserScript==
 
-function f() {
+function mark() {
     var elementLengh = document.getElementById('fba-inbound-queue-shipments-collection').getElementsByTagName('tr').length;
 
 
@@ -23,4 +23,4 @@ function f() {
     }
 }
 
-document.querySelector("#fba-inbound-queue-page").addEventListener("click", f);
+document.querySelector("#fba-inbound-queue-page").addEventListener("click", mark);
