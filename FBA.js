@@ -4,7 +4,7 @@
 // @version      0.4
 // @description  FBA Page Mod
 // @author       Raj
-// @match        https://sellercentral.amazon.com/gp/ssof/shipping-queue.html*
+// @match        https://sellercentral.amazon.com/gp/fba/*
 // @downloadURL  https://raw.githubusercontent.com/omnidune/UserScripts/master/FBA.js
 // @grant        none
 // ==/UserScript==
