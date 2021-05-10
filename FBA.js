@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         FBA Mod
 // @namespace    https://raw.githubusercontent.com/omnidune/UserScripts/master/FBA.js
-// @version      0.4
+// @version      0.5
 // @description  FBA Page Mod
 // @author       Raj
 // @match        https://sellercentral.amazon.com/gp/fba/*
