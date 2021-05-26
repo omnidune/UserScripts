@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         FBA Mod
 // @namespace    https://raw.githubusercontent.com/omnidune/UserScripts/master/FBA.js
-// @version      0.6
+// @version      0.7
 // @description  FBA Page Mod
 // @author       Raj
 // @match        https://sellercentral.amazon.com/gp/*
@@ -62,6 +62,7 @@ function mark() {
         var a = document.querySelectorAll('#numeric-cell > div:nth-child(1)')[i + 2].textContent;
         var b = document.querySelectorAll("#received_quantity_text")[i].textContent;
         //console.log(a, b);
+        document.querySelectorAll("#content-row")[i].style.background = "";
         if (a - b > 0) {
             document.querySelectorAll("#content-row")[i].style.background = "#ffa1a1";
         }
