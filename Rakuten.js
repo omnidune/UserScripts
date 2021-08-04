@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         Rakuten Enhancer
 // @namespace    https://raw.githubusercontent.com/omnidune/UserScripts/master/Rakuten.js
-// @version      0.3
+// @version      0.4
 // @description  This script adds filters to the inventory page, fixes the header from the inventory page of Rakuten on scroll.
 // @author       Raj
 // @match        https://smartfill.rakutensl.com/Inventory/index.aspx
+// @icon         https://www.google.com/s2/favicons?domain=rakutensl.com
 // @downloadURL  https://raw.githubusercontent.com/omnidune/UserScripts/master/Rakuten.js
 // @grant        none
 // ==/UserScript==
@@ -16,10 +17,9 @@ function filterfunction() {
     for (let index = 1; index < rows.length; index++) {
         const row = rows[index];
         var cellcategory = row.cells[0];
-        var cellcarton = row.cells[1];
         var cellinven = row.cells[4];
         var categorycelltext = cellcategory.textContent.trim();
-        var cartoncelltext = cellcarton.textContent.trim();
+        var cartoncelltext = row.textContent.trim().toUpperCase();
         var cellinv = cellinven.textContent.trim();
 
         row.style.display = "revert";
