@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         FBA Mod
 // @namespace    https://raw.githubusercontent.com/omnidune/UserScripts/master/FBA.js
-// @version      0.9
+// @version      1.0
 // @description  FBA Page Mod
 // @author       Raj
 // @match        https://sellercentral.amazon.com/gp/*
+// @icon         https://www.google.com/s2/favicons?domain=amazon.com
 // @downloadURL  https://raw.githubusercontent.com/omnidune/UserScripts/master/FBA.js
 // @grant        none
 // ==/UserScript==
@@ -20,23 +21,23 @@ function generateTable() {
         cell = row.insertCell();
         element = document.querySelectorAll("#shipment-name-container > kat-link > a")[0];
         cell.appendChild(element);
-        
+
         cell = row.insertCell();
         element = document.querySelectorAll('#shipment_id_text')[index];
         cell.appendChild(element);
-        
+
         cell = row.insertCell();
         element = document.querySelectorAll('#content-row > kat-table-cell:nth-child(2) > div:nth-child(1)')[index];
         cell.appendChild(element);
-        
+
         cell = row.insertCell();
         element = document.querySelectorAll('#content-row > kat-table-cell:nth-child(3) > div:nth-child(1)')[index];
         cell.appendChild(element);
-        
+
         cell = row.insertCell();
         element = document.querySelectorAll('#numeric-cell > kat-link > a')[0];
         cell.appendChild(element);
-        
+
         cell = row.insertCell();
         element = document.querySelectorAll('#numeric-cell > div:nth-child(1)')[2];
         cell.appendChild(element);
@@ -59,12 +60,15 @@ function mark() {
     var elementLengh = document.querySelectorAll("#content-row").length;
 
     for (var i = 0; i <= elementLengh; i++) {
-        var a = document.querySelectorAll('#numeric-cell > div:nth-child(1)')[i + 2].textContent;
-        var b = document.querySelectorAll("#received_quantity_text")[i].textContent;
+        var a = document.querySelectorAll('#numeric-cell > div:nth-child(1)')[i + 2].textContent.replace(",",""); //sent units
+        var b = document.querySelectorAll("#received_quantity_text")[i].textContent.replace(",",""); //received units
         //console.log(a, b);
         document.querySelectorAll("#content-row")[i].style.background = "";
-        if (a !== b) {
+        if (a-b > 0) {
             document.querySelectorAll("#content-row")[i].style.background = "#ffa1a1";
+        }
+        if (a-b < 0) {
+            document.querySelectorAll("#content-row")[i].style.background = "#99ccff";
         }
     }
 }
@@ -89,3 +93,4 @@ var existCondition = setInterval(function() {
         button.addEventListener("click", mark);
     }
 }, 100);
+
