@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         FBA Mod
 // @namespace    https://raw.githubusercontent.com/omnidune/UserScripts/master/FBA.js
-// @version      2.0
+// @version      2.1
 // @description  FBA Page Mod
 // @author       Raj
 // @match        https://sellercentral.amazon.com/gp/*
@@ -13,13 +13,10 @@
 
 function generateTable() {
     try {
-        document.querySelector("#intro_message > br:nth-child(1)").remove()
-        document.querySelector("#intro_message > br:nth-child(1)").remove()
         document.querySelector("#intro_message > table").remove()
     }
     catch {}
-
-    let gap = document.querySelector("#intro_message").innerHTML += "<br><br>";
+    
     var table = document.createElement("table");
     document.querySelector("#intro_message").appendChild(table);
     let cell;
@@ -28,6 +25,7 @@ function generateTable() {
     let matrix = document.querySelector("#main-table > kat-table > kat-table-body");
     //Search from the main table only, not the HTML table
     let length = matrix.querySelectorAll('[id=shipment-name-container]').length
+    console.log(length)
 
     for (let index = 0; index < length; index++) {
         //
@@ -101,12 +99,12 @@ function mark() {
 }
 
 var existCondition = setInterval(function() {
-    if (document.querySelector("#filter-export-container")) {
+    if (document.querySelector("#tab-view > kat-box > div.content.tool-bar-container > div:nth-child(1)")) {
         clearInterval(existCondition);
         var button = document.createElement("button");
         button.innerHTML = "Generate HTML Table";
 
-        var body = document.querySelector("#filter-export-container");
+        var body = document.querySelector("#tab-view > kat-box > div.content.tool-bar-container > div:nth-child(1)");
         body.appendChild(button);
 
         button.addEventListener("click", generateTable);
@@ -115,9 +113,8 @@ var existCondition = setInterval(function() {
         button = document.createElement("button");
         button.innerHTML = "Mark Discrepant Shipments";
 
-        body = document.querySelector("#filter-export-container");
+        body = document.querySelector("#tab-view > kat-box > div.content.tool-bar-container > div:nth-child(1)");
         body.appendChild(button);
         button.addEventListener("click", mark);
     }
 }, 100);
-
