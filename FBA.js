@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         FBA Mod
 // @namespace    https://raw.githubusercontent.com/omnidune/UserScripts/master/FBA.js
-// @version      2.1
+// @version      2.2
 // @description  FBA Page Mod
 // @author       Raj
 // @match        https://sellercentral.amazon.com/gp/*
@@ -13,10 +13,13 @@
 
 function generateTable() {
     try {
+        document.querySelector("#intro_message > br:nth-child(1)").remove()
+        document.querySelector("#intro_message > br:nth-child(1)").remove()
         document.querySelector("#intro_message > table").remove()
     }
     catch {}
-    
+
+    let gap = document.querySelector("#intro_message").innerHTML += "<br><br>";
     var table = document.createElement("table");
     document.querySelector("#intro_message").appendChild(table);
     let cell;
@@ -25,7 +28,6 @@ function generateTable() {
     let matrix = document.querySelector("#main-table > kat-table > kat-table-body");
     //Search from the main table only, not the HTML table
     let length = matrix.querySelectorAll('[id=shipment-name-container]').length
-    console.log(length)
 
     for (let index = 0; index < length; index++) {
         //
@@ -64,7 +66,7 @@ function generateTable() {
         //Units Sent
 
         cell = row.insertCell();
-        element = matrix.querySelectorAll('#received_quantity_text')[index].cloneNode(true);
+        element = matrix.querySelectorAll('#located_quantity_text')[index].cloneNode(true);
         cell.appendChild(element);
         //Units Received
 
@@ -82,11 +84,11 @@ function generateTable() {
 }
 
 function mark() {
-    var elementLengh = document.querySelectorAll("#content-row").length;
+    var elementLengh = document.querySelectorAll('[id=shipment-name-container]').length;
 
     for (var i = 0; i <= elementLengh; i++) {
         var a = document.querySelectorAll('#numeric-cell > div:nth-child(1)')[i + 2].textContent.replace(",",""); //sent units
-        var b = document.querySelectorAll("#received_quantity_text")[i].textContent.replace(",",""); //received units
+        var b = document.querySelectorAll("#located_quantity_text")[i].querySelector("#located_quantity_text > kat-link").getAttribute("label").replace(",",""); //received units
         //console.log(a, b);
         document.querySelectorAll("#content-row")[i].style.background = "";
         if (a-b > 0) {
@@ -99,12 +101,12 @@ function mark() {
 }
 
 var existCondition = setInterval(function() {
-    if (document.querySelector("#tab-view > kat-box > div.content.tool-bar-container > div:nth-child(1)")) {
+    if (document.querySelector("#tab-view > kat-box > div > div.popover-container.all-filter-container > div.popover-inline-filter-container")) {
         clearInterval(existCondition);
         var button = document.createElement("button");
         button.innerHTML = "Generate HTML Table";
 
-        var body = document.querySelector("#tab-view > kat-box > div.content.tool-bar-container > div:nth-child(1)");
+        var body = document.querySelector("#tab-view > kat-box > div > div.popover-container.all-filter-container > div.popover-inline-filter-container");
         body.appendChild(button);
 
         button.addEventListener("click", generateTable);
@@ -113,7 +115,7 @@ var existCondition = setInterval(function() {
         button = document.createElement("button");
         button.innerHTML = "Mark Discrepant Shipments";
 
-        body = document.querySelector("#tab-view > kat-box > div.content.tool-bar-container > div:nth-child(1)");
+        body = document.querySelector("#tab-view > kat-box > div > div.popover-container.all-filter-container > div.popover-inline-filter-container");
         body.appendChild(button);
         button.addEventListener("click", mark);
     }
